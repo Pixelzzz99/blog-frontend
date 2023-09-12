@@ -1,9 +1,10 @@
 import { Component, ReactNode } from "react";
 import { clsx } from "clsx";
 import { IconButton } from "@mui/material";
-import { Delete, Comment, Edit } from "@mui/icons-material";
-import CommentIcon from "@mui/icons-material/Comment";
+import { Delete, Comment, Edit, Visibility } from "@mui/icons-material";
+import { PostSkeleton } from "./Skeleton";
 import "./Post.scss";
+import { UserInfo } from "../UserInfo/userInfo";
 
 type PostProps = {
   id: number;
@@ -35,6 +36,7 @@ export class Post extends Component<PostProps> {
       imageUrl,
       viewsCount,
       commentsCount,
+      user,
       tags,
       createdAt,
       isFullPost,
@@ -43,10 +45,9 @@ export class Post extends Component<PostProps> {
       children,
     } = this.props;
 
-    // if (isLoading) {
-    //   return;
-    // TODO PostSkeleton
-    // }
+    if (isLoading) {
+      return <PostSkeleton />;
+    }
 
     return (
       <div className={clsx("root", { ["rootFull"]: isFullPost })}>
@@ -57,6 +58,12 @@ export class Post extends Component<PostProps> {
                 <Edit />
               </IconButton>
             </a>
+            <IconButton
+              color="secondary"
+              onClick={this.onClickRemove}
+            >
+                <Delete />
+            </IconButton>
           </div>
         )}
 
@@ -68,7 +75,7 @@ export class Post extends Component<PostProps> {
           />
         )}
         <div className="wrapper">
-          {/* TODO USER INFO */}
+          <UserInfo {...user} additionalText={createdAt} />
           <div className="indention">
             <h2 className={clsx("title", { ["titleFull"]: isFullPost })}>
               {isFullPost ? title : <a href={`/posts/${id}/show`}>{title}</a>}
@@ -82,8 +89,12 @@ export class Post extends Component<PostProps> {
             </ul>
             {children && <div className="content">{children}</div>}
             <ul className="postDetails">
+                <li>
+                    <Visibility/>
+                    <span>{viewsCount}</span>
+                </li>
               <li>
-                <CommentIcon />
+                <Comment />
                 <span>{commentsCount}</span>
               </li>
             </ul>
