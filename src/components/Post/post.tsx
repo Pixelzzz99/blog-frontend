@@ -6,10 +6,16 @@ import { PostSkeleton } from "./Skeleton";
 import "./Post.scss";
 import { UserInfo } from "../UserInfo/userInfo";
 
+type userInfo = {
+  avatarUrl: string;
+  fullName: string;
+};
+
 type PostProps = {
   id: number;
   title: string;
   imageUrl: string;
+  user: userInfo;
   viewsCount: number;
   commentsCount: number;
   tags: string[];
@@ -58,11 +64,8 @@ export class Post extends Component<PostProps> {
                 <Edit />
               </IconButton>
             </a>
-            <IconButton
-              color="secondary"
-              onClick={this.onClickRemove}
-            >
-                <Delete />
+            <IconButton color="secondary" onClick={this.onClickRemove}>
+              <Delete />
             </IconButton>
           </div>
         )}
@@ -89,10 +92,10 @@ export class Post extends Component<PostProps> {
             </ul>
             {children && <div className="content">{children}</div>}
             <ul className="postDetails">
-                <li>
-                    <Visibility/>
-                    <span>{viewsCount}</span>
-                </li>
+              <li>
+                <Visibility />
+                <span>{viewsCount}</span>
+              </li>
               <li>
                 <Comment />
                 <span>{commentsCount}</span>

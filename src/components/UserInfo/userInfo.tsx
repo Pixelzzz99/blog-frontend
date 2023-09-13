@@ -3,15 +3,14 @@ import "./UserInfo.scss";
 type UserInfoProps = {
   avatarUrl: string;
   fullName: string;
-  additionalText: string;
+  additionalText: Date | string;
 };
 
 export const UserInfo = ({
-    avatarUrl,
-    fullName,
-    additionalText,
-}:UserInfoProps) => {
-
+  avatarUrl,
+  fullName,
+  additionalText,
+}: UserInfoProps) => {
   return (
     <div className="root">
       <img
@@ -19,7 +18,10 @@ export const UserInfo = ({
         alt={fullName}
         className="avatar"
       />
-
+      <div className="userDetails">
+        <span className="userName">{fullName}</span>
+        <span className="addtional">{additionalText}</span>
+      </div>
     </div>
   );
 };
