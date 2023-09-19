@@ -19,11 +19,11 @@ type PostProps = {
   viewsCount: number;
   commentsCount: number;
   tags: string[];
-  isFullPost: boolean;
-  isLoading: boolean;
+  isFullPost?: boolean;
+  isLoading?: boolean;
   isEditable: boolean;
   createdAt: Date | string;
-  children: string;
+  children?: ReactNode;
 };
 
 export class Post extends Component<PostProps> {
