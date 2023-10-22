@@ -12,7 +12,7 @@ export const UserInfo = ({
   additionalText,
 }: UserInfoProps) => {
   return (
-    <div className="root">
+    <div className="root-user-info">
       <img
         src={avatarUrl || "./noavatar.png"}
         alt={fullName}

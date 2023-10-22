@@ -17,8 +17,8 @@ export class SideBlock extends Component<SideBlockProps> {
   render(): ReactNode {
     const { title, children } = this.props;
     return (
-      <Paper classes={{ root: "root" }}>
-        <Typography variant="h6" classes={{ root: "title" }}>
+      <Paper classes={{ root: "root-side-block" }}>
+        <Typography variant="h6" classes={{ root: "title-side-block" }}>
           <b>{title}</b>
         </Typography>
         {children}

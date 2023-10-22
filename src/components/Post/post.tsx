@@ -1,4 +1,5 @@
 import { Component, ReactNode } from "react";
+import { Link } from "react-router-dom";
 import { clsx } from "clsx";
 import { IconButton } from "@mui/material";
 import { Delete, Comment, Edit, Visibility } from "@mui/icons-material";
@@ -21,7 +22,7 @@ type PostProps = {
   tags: string[];
   isFullPost?: boolean;
   isLoading?: boolean;
-  isEditable: boolean;
+  isEditable?: boolean;
   createdAt: Date | string;
   children?: ReactNode;
 };
@@ -59,11 +60,11 @@ export class Post extends Component<PostProps> {
       <div className={clsx("root", { ["rootFull"]: isFullPost })}>
         {isEditable && (
           <div className="editButtons">
-            <a href={`/posts/${id}/edit`}>
+            <Link to={`/posts/${id}/edit`}>
               <IconButton color="primary">
                 <Edit />
               </IconButton>
-            </a>
+            </Link>
             <IconButton color="secondary" onClick={this.onClickRemove}>
               <Delete />
             </IconButton>
@@ -80,13 +81,17 @@ export class Post extends Component<PostProps> {
         <div className="wrapper">
           <UserInfo {...user} additionalText={createdAt} />
           <div className="indention">
-            <h2 className={clsx("title", { ["titleFull"]: isFullPost })}>
-              {isFullPost ? title : <a href={`/posts/${id}/show`}>{title}</a>}
+            <h2 className={clsx("title-post", { ["titleFull"]: isFullPost })}>
+              {isFullPost ? (
+                title
+              ) : (
+                <Link to={`/posts/${id}`}>{title}</Link>
+              )}
             </h2>
             <ul className="tags">
               {tags.map((name) => (
                 <li key={name}>
-                  <a href={`/tags/${name}`}>{name}</a>
+                  <Link to={`/tags/${name}`}>{name}</Link>
                 </li>
               ))}
             </ul>

@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { Link } from "react-router-dom";
 import { Button, Container } from "@mui/material";
 import "./Header.scss";
 
@@ -16,9 +17,9 @@ export class Header extends Component<{}, { isAuth: boolean }> {
     if (this.state.isAuth) {
       return (
         <>
-          <a href="/posts/create">
+          <Link to="/posts/create">
             <Button variant="contained">Написать статью</Button>
-          </a>
+          </Link>
           <Button
             onClick={this.onClickLogout}
             variant="contained"
@@ -31,25 +32,25 @@ export class Header extends Component<{}, { isAuth: boolean }> {
     }
     return (
       <>
-        <a href="/login">
+        <Link to="/login">
           <Button variant="contained">Войти</Button>
-        </a>
-        <a href="/register">
+        </Link>
+        <Link to="/register">
           <Button variant="contained">Создать аккаунт</Button>
-        </a>
+        </Link>
       </>
     );
   }
 
   render() {
     return (
-      <div className="root">
+      <div className="root-header">
         <Container maxWidth="lg">
-          <div className="inner">
-            <a href="" className="logo">
+          <div className="inner-header">
+            <Link to="" className="logo-header">
               <div>Pixelzzz blog</div>
-            </a>
-            <div className="buttons">{this.renderButtons()}</div>
+            </Link>
+            <div className="buttons-header">{this.renderButtons()}</div>
           </div>
         </Container>
       </div>

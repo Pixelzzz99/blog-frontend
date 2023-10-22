@@ -31,6 +31,7 @@ export class CommentsBlock extends Component<CommentsBlockProps> {
 
   render(): ReactNode {
     const { items, isLoading, children } = this.props;
+    console.log(children);
     return (
       <SideBlock title="Комментарии">
         <List>
